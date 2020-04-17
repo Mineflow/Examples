@@ -1,0 +1,38 @@
+{
+    "name": "TouchBlockInfo",
+    "author": "aieuooo",
+    "detail": "Send information about the block you touched in the Tip field",
+    "plugin_version": "0.0.1",
+    "recipes": [
+        {
+            "name": "TouchBlockInfo",
+            "group": "aieuo\/TouchBlockInfo",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "type": "action",
+                    "id": "sendTip",
+                    "contents": [
+                        "target",
+                        "§a{block.name} §b{block.id}:{block.damage} §e{block.xyz},{block.level}"
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "PlayerInteractEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    ],
+    "commands": [],
+    "forms": []
+}

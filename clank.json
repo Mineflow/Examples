@@ -1,0 +1,629 @@
+{
+    "name": "clank",
+    "author": "aieuooo",
+    "detail": "clank",
+    "plugin_version": "0.0.1",
+    "recipes": {
+        "aieuo\/clank\/clank": {
+            "name": "clank",
+            "group": "aieuo\/clank",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "type": "action",
+                    "id": "createConfig",
+                    "contents": [
+                        "config",
+                        "clank"
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "callRecipe",
+                    "contents": [
+                        "getSettings",
+                        [
+                            "{config}"
+                        ]
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "fourArithmeticOperations",
+                    "contents": [
+                        "{count(items)}",
+                        1,
+                        "1",
+                        "max"
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "random",
+                    "contents": [
+                        "0",
+                        "{max}",
+                        "random"
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "createItem",
+                    "contents": [
+                        "item",
+                        "{items[{random}].id}",
+                        "{items[{random}].count}"
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "callRecipe",
+                    "contents": [
+                        "getMessage",
+                        [
+                            "{config}",
+                            "money"
+                        ]
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "type": "condition",
+                                "id": "canAddItem",
+                                "contents": [
+                                    "target",
+                                    "item"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "type": "action",
+                                "id": "if",
+                                "contents": [
+                                    [
+                                        {
+                                            "type": "condition",
+                                            "id": "overMoney",
+                                            "contents": [
+                                                "{target.name}",
+                                                "{cost}"
+                                            ]
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "type": "action",
+                                            "id": "takeMoney",
+                                            "contents": [
+                                                "{target.name}",
+                                                "{cost}"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "addItem",
+                                            "contents": [
+                                                "target",
+                                                "item"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "sendMessage",
+                                            "contents": [
+                                                "target",
+                                                "[Clank] {item.name} x{item.count}"
+                                            ]
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "else",
+                                "contents": [
+                                    {
+                                        "type": "action",
+                                        "id": "callRecipe",
+                                        "contents": [
+                                            "getMessage",
+                                            [
+                                                "{config}",
+                                                "money"
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "type": "action",
+                                        "id": "sendMessage",
+                                        "contents": [
+                                            "target",
+                                            "{message}"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "else",
+                    "contents": [
+                        {
+                            "type": "action",
+                            "id": "callRecipe",
+                            "contents": [
+                                "getMessage",
+                                [
+                                    "{config}",
+                                    "inventory"
+                                ]
+                            ]
+                        },
+                        {
+                            "type": "action",
+                            "id": "sendMessage",
+                            "contents": [
+                                "target",
+                                "{message}"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "command",
+                    "key": "clank",
+                    "subKey": "clank"
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        },
+        "aieuo\/clank\/getSettings": {
+            "name": "getSettings",
+            "group": "aieuo\/clank",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "type": "action",
+                    "id": "addVariable",
+                    "contents": [
+                        "cost",
+                        "1000",
+                        1,
+                        true
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "type": "condition",
+                                "id": "existsConfig",
+                                "contents": [
+                                    "config",
+                                    "cost"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "type": "action",
+                                "id": "getVariable",
+                                "contents": [
+                                    "config.cost",
+                                    "cost"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "else",
+                    "contents": [
+                        {
+                            "type": "action",
+                            "id": "setConfig",
+                            "contents": [
+                                "config",
+                                "cost",
+                                "{cost}"
+                            ]
+                        },
+                        {
+                            "type": "action",
+                            "id": "saveConfig",
+                            "contents": [
+                                "config"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "type": "condition",
+                                "id": "not",
+                                "contents": [
+                                    {
+                                        "type": "condition",
+                                        "id": "existsConfig",
+                                        "contents": [
+                                            "config",
+                                            "items"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "type": "action",
+                                "id": "callRecipe",
+                                "contents": [
+                                    "createItemList",
+                                    [
+                                        "{config}"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "getVariable",
+                    "contents": [
+                        "config.items",
+                        "items"
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [
+                "config"
+            ],
+            "returnValues": [
+                "cost",
+                "items"
+            ]
+        },
+        "aieuo\/clank\/createItemList": {
+            "name": "createItemList",
+            "group": "aieuo\/clank",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "type": "action",
+                    "id": "addListVariable",
+                    "contents": [
+                        "ids",
+                        [
+                            "1:0",
+                            "1:1",
+                            "1:2",
+                            "1:3",
+                            "1:4",
+                            "1:5",
+                            "1:6",
+                            "2:0",
+                            "3:0",
+                            "4:0",
+                            "5:0",
+                            "5:1",
+                            "5:2",
+                            "5:3",
+                            "apple",
+                            "potato",
+                            "carrot"
+                        ],
+                        true
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "createList",
+                    "contents": [
+                        "items",
+                        [
+                            ""
+                        ],
+                        true
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "repeat",
+                    "contents": [
+                        "{count(ids)}",
+                        [
+                            {
+                                "type": "action",
+                                "id": "createMap",
+                                "contents": [
+                                    "item",
+                                    [
+                                        ""
+                                    ],
+                                    [
+                                        ""
+                                    ],
+                                    true
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "addMapVariable",
+                                "contents": [
+                                    "item",
+                                    "id",
+                                    "{ids[{i}]}",
+                                    true
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "addMapVariable",
+                                "contents": [
+                                    "item",
+                                    "count",
+                                    "",
+                                    true
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "addListVariable",
+                                "contents": [
+                                    "items",
+                                    [
+                                        "{item}"
+                                    ],
+                                    true
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "setConfig",
+                    "contents": [
+                        "config",
+                        "items",
+                        "{items}"
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "saveConfig",
+                    "contents": [
+                        "config"
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [
+                "config"
+            ],
+            "returnValues": []
+        },
+        "aieuo\/clank\/getMessage": {
+            "name": "getMessage",
+            "group": "aieuo\/clank",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "type": "action",
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "type": "condition",
+                                "id": "not",
+                                "contents": [
+                                    {
+                                        "type": "condition",
+                                        "id": "existsConfig",
+                                        "contents": [
+                                            "config",
+                                            "language"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "type": "action",
+                                "id": "setConfig",
+                                "contents": [
+                                    "config",
+                                    "language",
+                                    "jpn"
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "saveConfig",
+                                "contents": [
+                                    "config"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "getVariable",
+                    "contents": [
+                        "config.language",
+                        "language"
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "type": "condition",
+                                "id": "not",
+                                "contents": [
+                                    {
+                                        "type": "condition",
+                                        "id": "existsConfig",
+                                        "contents": [
+                                            "config",
+                                            "messages"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "type": "action",
+                                "id": "createMap",
+                                "contents": [
+                                    "messages",
+                                    [
+                                        ""
+                                    ],
+                                    [
+                                        ""
+                                    ],
+                                    true
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "createMap",
+                                "contents": [
+                                    "money",
+                                    [
+                                        "jpn",
+                                        "eng"
+                                    ],
+                                    [
+                                        "§c[Clank] 所持金が足りません§f",
+                                        "§c[Clank] You don't have enough money.§f"
+                                    ],
+                                    true
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "createMap",
+                                "contents": [
+                                    "inventory",
+                                    [
+                                        "jpn",
+                                        "eng"
+                                    ],
+                                    [
+                                        "§e[Clank] インベントリがいっぱいです§f",
+                                        "§e[Clank] Your inventory is full.§f"
+                                    ],
+                                    true
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "addMapVariable",
+                                "contents": [
+                                    "messages",
+                                    "money",
+                                    "{money}",
+                                    true
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "addMapVariable",
+                                "contents": [
+                                    "messages",
+                                    "inventory",
+                                    "{inventory}",
+                                    true
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "setConfig",
+                                "contents": [
+                                    "config",
+                                    "messages",
+                                    "{messages}"
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "saveConfig",
+                                "contents": [
+                                    "config"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "getVariable",
+                    "contents": [
+                        "config.messages.{id}.{language}",
+                        "message"
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [
+                "config",
+                "id",
+                "language"
+            ],
+            "returnValues": [
+                "message"
+            ]
+        }
+    },
+    "commands": {
+        "clank": {
+            "command": "clank",
+            "permission": "mineflow.customcommand.true",
+            "description": "clank command",
+            "subcommands": []
+        }
+    },
+    "forms": []
+}
