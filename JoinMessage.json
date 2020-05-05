@@ -1,0 +1,86 @@
+{
+    "name": "JoinMessage",
+    "author": "aieuooo",
+    "detail": "Send message when a player join the server",
+    "plugin_version": "0.2.0",
+    "recipes": {
+        "aieuo\/joinMessage\/JoinMessage": {
+            "name": "JoinMessage",
+            "group": "aieuo\/joinMessage",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "type": "action",
+                    "id": "createConfig",
+                    "contents": [
+                        "config",
+                        "JoinMessage"
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "type": "condition",
+                                "id": "not",
+                                "contents": [
+                                    {
+                                        "type": "condition",
+                                        "id": "existsConfig",
+                                        "contents": [
+                                            "config",
+                                            "message"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "type": "action",
+                                "id": "setConfig",
+                                "contents": [
+                                    "config",
+                                    "message",
+                                    "こんにちは"
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "saveConfig",
+                                "contents": [
+                                    "config"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "sendMessage",
+                    "contents": [
+                        "target",
+                        "{config.message}"
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "PlayerJoinEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    },
+    "commands": [],
+    "forms": []
+}
