@@ -1,0 +1,513 @@
+{
+    "name": "mobAI",
+    "author": "aieuooo",
+    "detail": "AI...?殴ったエンティティが追いかけてくる",
+    "plugin_version": "0.3.1",
+    "recipes": {
+        "aieuo\/mobAI\/main": {
+            "name": "main",
+            "group": "aieuo\/mobAI",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "type": "action",
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "type": "condition",
+                                "id": "isPlayer",
+                                "contents": [
+                                    "{damaged.id}"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "type": "action",
+                                "id": "exit",
+                                "contents": []
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "type": "condition",
+                                "id": "existsListVariableKey",
+                                "contents": [
+                                    "entityIds",
+                                    "{damaged.id}",
+                                    false
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "type": "action",
+                                "id": "exit",
+                                "contents": []
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "addMapVariable",
+                    "contents": [
+                        "entityIds",
+                        "{damaged.id}",
+                        "{target.id}",
+                        false
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "callRecipe",
+                    "contents": [
+                        "move",
+                        [
+                            "{damaged}"
+                        ]
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "removeContent",
+                    "contents": [
+                        "entityIds",
+                        "{damaged.id}",
+                        false
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "EntityAttackEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        },
+        "aieuo\/mobAI\/move": {
+            "name": "move",
+            "group": "aieuo\/mobAI",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "type": "action",
+                    "id": "getEntity",
+                    "contents": [
+                        "{entityIds[{entity.id}]}",
+                        "target"
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "addVariable",
+                    "contents": [
+                        "diff",
+                        "0",
+                        1,
+                        true
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "whileTask",
+                    "contents": [
+                        [
+                            {
+                                "type": "condition",
+                                "id": "isActiveEntity",
+                                "contents": [
+                                    "{entity.id}"
+                                ]
+                            },
+                            {
+                                "type": "condition",
+                                "id": "isActiveEntity",
+                                "contents": [
+                                    "{target.id}"
+                                ]
+                            },
+                            {
+                                "type": "condition",
+                                "id": "comparisonNumber",
+                                "contents": [
+                                    "{diff}",
+                                    5,
+                                    "{entityDistanceMax}"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "type": "action",
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{target.x}",
+                                    1,
+                                    "{entity.x}",
+                                    "x"
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{target.y}",
+                                    1,
+                                    "{entity.y}",
+                                    "y"
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{target.z}",
+                                    1,
+                                    "{entity.z}",
+                                    "z"
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "calculate",
+                                "contents": [
+                                    "{x}",
+                                    3,
+                                    "dx"
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "calculate",
+                                "contents": [
+                                    "{z}",
+                                    3,
+                                    "dz"
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{dx}",
+                                    0,
+                                    "{dz}",
+                                    "diff"
+                                ]
+                            },
+                            {
+                                "type": "action",
+                                "id": "if",
+                                "contents": [
+                                    [
+                                        {
+                                            "type": "condition",
+                                            "id": "comparisonNumber",
+                                            "contents": [
+                                                "{diff}",
+                                                4,
+                                                "0.8"
+                                            ]
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "type": "action",
+                                            "id": "fourArithmeticOperations",
+                                            "contents": [
+                                                "{x}",
+                                                3,
+                                                "{diff}",
+                                                "mx"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "fourArithmeticOperations",
+                                            "contents": [
+                                                "{z}",
+                                                3,
+                                                "{diff}",
+                                                "mz"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "fourArithmeticOperations",
+                                            "contents": [
+                                                "{mx}",
+                                                2,
+                                                "{moveSpeed}",
+                                                "mx"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "fourArithmeticOperations",
+                                            "contents": [
+                                                "{mz}",
+                                                2,
+                                                "{moveSpeed}",
+                                                "mz"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "motion",
+                                            "contents": [
+                                                "entity",
+                                                "{mx}",
+                                                "0",
+                                                "{mz}"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "calculate2",
+                                            "contents": [
+                                                "{mx}",
+                                                "{mz}",
+                                                5,
+                                                "yaw"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "fourArithmeticOperations",
+                                            "contents": [
+                                                "{yaw}",
+                                                2,
+                                                "-180",
+                                                "yaw"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "fourArithmeticOperations",
+                                            "contents": [
+                                                "{yaw}",
+                                                3,
+                                                "{getPi()}",
+                                                "yaw"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "setYaw",
+                                            "contents": [
+                                                "entity",
+                                                "{yaw}"
+                                            ]
+                                        }
+                                    ]
+                                ],
+                                "customName": "エンティティとプレイヤーが離れてる時プレイヤーのほうに動かす"
+                            },
+                            {
+                                "type": "action",
+                                "id": "else",
+                                "contents": [
+                                    {
+                                        "type": "action",
+                                        "id": "callRecipe",
+                                        "contents": [
+                                            "attack",
+                                            [
+                                                "{target}"
+                                            ]
+                                        ]
+                                    }
+                                ],
+                                "customName": "エンティティとプレイヤーが近い時攻撃する"
+                            },
+                            {
+                                "type": "action",
+                                "id": "if",
+                                "contents": [
+                                    [
+                                        {
+                                            "type": "condition",
+                                            "id": "comparisonNumber",
+                                            "contents": [
+                                                "{y}",
+                                                1,
+                                                "0"
+                                            ]
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "type": "action",
+                                            "id": "calculate2",
+                                            "contents": [
+                                                "{x}",
+                                                "{z}",
+                                                4,
+                                                "result"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "calculate2",
+                                            "contents": [
+                                                "{y}",
+                                                "{result}",
+                                                5,
+                                                "pitch"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "fourArithmeticOperations",
+                                            "contents": [
+                                                "{pitch}",
+                                                2,
+                                                "-180",
+                                                "pitch"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "fourArithmeticOperations",
+                                            "contents": [
+                                                "{pitch}",
+                                                3,
+                                                "{getPi()}",
+                                                "pitch"
+                                            ]
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "setPitch",
+                                            "contents": [
+                                                "entity",
+                                                "{pitch}"
+                                            ]
+                                        }
+                                    ]
+                                ],
+                                "customName": "エンティティとプレイヤーのy座標が等しくないときだけ頭の角度を変える"
+                            }
+                        ],
+                        1,
+                        -1
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [
+                "entity"
+            ],
+            "returnValues": []
+        },
+        "aieuo\/mobAI\/attack": {
+            "name": "attack",
+            "group": "aieuo\/mobAI",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "type": "action",
+                    "id": "addDamage",
+                    "contents": [
+                        "target",
+                        "{entityDamageAmount}"
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [
+                "target"
+            ],
+            "returnValues": []
+        },
+        "aieuo\/mobAI\/reset": {
+            "name": "reset",
+            "group": "aieuo\/mobAI",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "type": "action",
+                    "id": "createMap",
+                    "contents": [
+                        "entityIds",
+                        [
+                            ""
+                        ],
+                        [
+                            ""
+                        ],
+                        false
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "addVariable",
+                    "contents": [
+                        "moveSpeed",
+                        "0.35",
+                        1,
+                        false
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "addVariable",
+                    "contents": [
+                        "entityDistanceMax",
+                        "30",
+                        1,
+                        false
+                    ]
+                },
+                {
+                    "type": "action",
+                    "id": "addVariable",
+                    "contents": [
+                        "entityDamageAmount",
+                        "1",
+                        1,
+                        false
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "ServerStartEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    },
+    "commands": [],
+    "forms": []
+}
