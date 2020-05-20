@@ -1,0 +1,150 @@
+{
+    "name": "CheckCoolDown",
+    "author": "aieuooo",
+    "detail": "Returns false if it is executed within the specified interval or less, and true otherwise.",
+    "plugin_version": "0.4.0",
+    "recipes": {
+        "aieuo\/function\/checkCoolDown": {
+            "name": "checkCoolDown",
+            "group": "aieuo\/function",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "not",
+                                "contents": [
+                                    {
+                                        "id": "existsVariable",
+                                        "contents": [
+                                            "cool_down"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "createMap",
+                                "contents": [
+                                    "cool_down",
+                                    [
+                                        ""
+                                    ],
+                                    [
+                                        ""
+                                    ],
+                                    false
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "not",
+                                "contents": [
+                                    {
+                                        "id": "existsListVariableKey",
+                                        "contents": [
+                                            "cool_down",
+                                            "{target.name}",
+                                            false
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "addMapVariable",
+                                "contents": [
+                                    "cool_down",
+                                    "{target.name}",
+                                    "0",
+                                    false
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "fourArithmeticOperations",
+                    "contents": [
+                        "{microtime}",
+                        1,
+                        "{cool_down[{target.name}]}",
+                        "diff"
+                    ]
+                },
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "comparisonNumber",
+                                "contents": [
+                                    "{diff}",
+                                    5,
+                                    "3"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "addVariable",
+                                "contents": [
+                                    "result",
+                                    "false",
+                                    0,
+                                    true
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "else",
+                    "contents": [
+                        {
+                            "id": "addMapVariable",
+                            "contents": [
+                                "cool_down",
+                                "{target.name}",
+                                "{microtime}",
+                                false
+                            ]
+                        },
+                        {
+                            "id": "addVariable",
+                            "contents": [
+                                "result",
+                                "true",
+                                0,
+                                true
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [
+                "time"
+            ],
+            "returnValues": [
+                "result"
+            ]
+        }
+    },
+    "commands": [],
+    "forms": []
+}
