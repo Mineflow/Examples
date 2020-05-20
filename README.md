@@ -4,15 +4,15 @@
 jsonファイルをmineflow/importsフォルダに入れて`/mineflow`コマンドで読みこんでください  
 Put the json file in the mineflow/imports folder and import it with `/mineflow` command  
 
-## checkId
+## [checkId](https://github.com/aieuo/MineflowExamples/blob/master/checkId.json)
 `/id` コマンドで手に持っているアイテムのidを表示する  
 Send ID of the item in player's hand with the command `/id`.  
 
-## TouchBlockInfo
+## [TouchBlockInfo](https://github.com/aieuo/MineflowExamples/blob/master/TouchBlockInfo.json)
 触ったブロックの情報をtip欄に送る  
 Send info about the block you touched to the tip field.  
 
-## clank
+## [clank](https://github.com/aieuo/MineflowExamples/blob/master/clank.json)
 `/clank`コマンドでお金を1000消費してガチャを引く  
 Draw a lottery with the command "/clank".  
 #### config: clank.yml
@@ -24,16 +24,16 @@ items:
 language: <jpn or eng>
 ```
 
-## mobAI
+## [mobAI](https://github.com/aieuo/MineflowExamples/blob/master/mobAI.json)
 殴ったエンティティが追いかけてくる(ジャンプはしません)  
 The entity you attacked will track you down.  
 
-## BlockPlaceCoolDown
+## [BlockPlaceCoolDown](https://github.com/aieuo/MineflowExamples/blob/master/BlockPlaceCoolDown.json)
 [checkCoolDown](#checkCoolDown)の使用例  
 Example for [checkCoolDown](#checkCoolDown)  
 
 # functions
-## checkCoolDown
+## [checkCoolDown](https://github.com/aieuo/MineflowExamples/blob/master/CheckCoolDown.json)
 指定した時間以内に呼び出すとfalseをそれ以外はtrueを返す  
 使用方法:  
 1. `スクリプト > ほかのレシピを呼び出す`で<name>に`aieuo/function/checkCoolDown`を、<args>に秒数を入力  
@@ -41,6 +41,7 @@ Example for [checkCoolDown](#checkCoolDown)
 3. `もし`の条件に`スクリプト > 文字列を比較する`を追加して`{result}`と`true`が等しいか調べる  
 
 使用例: [BlockPlaceCoolDown](#BlockPlaceCoolDown)  
+
 Returns false if it is executed within the specified interval or less, and true otherwise.  
 How to use:  
 1. Enter `aieuo/function/checkCoolDown` in <name> and seconds in <args> of `Script > Call Other Recipes`  
