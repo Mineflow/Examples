@@ -2,7 +2,7 @@
     "name": "mobAI",
     "author": "aieuooo",
     "detail": "AI...?殴ったエンティティが追いかけてくる",
-    "plugin_version": "0.3.1",
+    "plugin_version": "0.6.0",
     "recipes": {
         "aieuo\/mobAI\/main": {
             "name": "main",
@@ -10,12 +10,39 @@
             "author": "aieuooo",
             "actions": [
                 {
-                    "type": "action",
                     "id": "if",
                     "contents": [
                         [
                             {
-                                "type": "condition",
+                                "id": "not",
+                                "contents": [
+                                    {
+                                        "id": "existsVariable",
+                                        "contents": [
+                                            "entityIds"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "callRecipe",
+                                "contents": [
+                                    "reset",
+                                    [
+                                        ""
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
                                 "id": "isPlayer",
                                 "contents": [
                                     "{damaged.id}"
@@ -24,7 +51,6 @@
                         ],
                         [
                             {
-                                "type": "action",
                                 "id": "exit",
                                 "contents": []
                             }
@@ -32,12 +58,10 @@
                     ]
                 },
                 {
-                    "type": "action",
                     "id": "if",
                     "contents": [
                         [
                             {
-                                "type": "condition",
                                 "id": "existsListVariableKey",
                                 "contents": [
                                     "entityIds",
@@ -48,7 +72,6 @@
                         ],
                         [
                             {
-                                "type": "action",
                                 "id": "exit",
                                 "contents": []
                             }
@@ -56,7 +79,6 @@
                     ]
                 },
                 {
-                    "type": "action",
                     "id": "addMapVariable",
                     "contents": [
                         "entityIds",
@@ -66,7 +88,6 @@
                     ]
                 },
                 {
-                    "type": "action",
                     "id": "callRecipe",
                     "contents": [
                         "move",
@@ -76,7 +97,6 @@
                     ]
                 },
                 {
-                    "type": "action",
                     "id": "removeContent",
                     "contents": [
                         "entityIds",
@@ -105,7 +125,6 @@
             "author": "aieuooo",
             "actions": [
                 {
-                    "type": "action",
                     "id": "getEntity",
                     "contents": [
                         "{entityIds[{entity.id}]}",
@@ -113,7 +132,6 @@
                     ]
                 },
                 {
-                    "type": "action",
                     "id": "addVariable",
                     "contents": [
                         "diff",
@@ -123,26 +141,22 @@
                     ]
                 },
                 {
-                    "type": "action",
                     "id": "whileTask",
                     "contents": [
                         [
                             {
-                                "type": "condition",
                                 "id": "isActiveEntity",
                                 "contents": [
                                     "{entity.id}"
                                 ]
                             },
                             {
-                                "type": "condition",
                                 "id": "isActiveEntity",
                                 "contents": [
                                     "{target.id}"
                                 ]
                             },
                             {
-                                "type": "condition",
                                 "id": "comparisonNumber",
                                 "contents": [
                                     "{diff}",
@@ -153,7 +167,6 @@
                         ],
                         [
                             {
-                                "type": "action",
                                 "id": "fourArithmeticOperations",
                                 "contents": [
                                     "{target.x}",
@@ -163,7 +176,6 @@
                                 ]
                             },
                             {
-                                "type": "action",
                                 "id": "fourArithmeticOperations",
                                 "contents": [
                                     "{target.y}",
@@ -173,7 +185,6 @@
                                 ]
                             },
                             {
-                                "type": "action",
                                 "id": "fourArithmeticOperations",
                                 "contents": [
                                     "{target.z}",
@@ -183,7 +194,6 @@
                                 ]
                             },
                             {
-                                "type": "action",
                                 "id": "calculate",
                                 "contents": [
                                     "{x}",
@@ -192,7 +202,6 @@
                                 ]
                             },
                             {
-                                "type": "action",
                                 "id": "calculate",
                                 "contents": [
                                     "{z}",
@@ -201,7 +210,6 @@
                                 ]
                             },
                             {
-                                "type": "action",
                                 "id": "fourArithmeticOperations",
                                 "contents": [
                                     "{dx}",
@@ -211,12 +219,10 @@
                                 ]
                             },
                             {
-                                "type": "action",
                                 "id": "if",
                                 "contents": [
                                     [
                                         {
-                                            "type": "condition",
                                             "id": "comparisonNumber",
                                             "contents": [
                                                 "{diff}",
@@ -227,7 +233,6 @@
                                     ],
                                     [
                                         {
-                                            "type": "action",
                                             "id": "fourArithmeticOperations",
                                             "contents": [
                                                 "{x}",
@@ -237,7 +242,6 @@
                                             ]
                                         },
                                         {
-                                            "type": "action",
                                             "id": "fourArithmeticOperations",
                                             "contents": [
                                                 "{z}",
@@ -247,7 +251,6 @@
                                             ]
                                         },
                                         {
-                                            "type": "action",
                                             "id": "fourArithmeticOperations",
                                             "contents": [
                                                 "{mx}",
@@ -257,7 +260,6 @@
                                             ]
                                         },
                                         {
-                                            "type": "action",
                                             "id": "fourArithmeticOperations",
                                             "contents": [
                                                 "{mz}",
@@ -267,7 +269,6 @@
                                             ]
                                         },
                                         {
-                                            "type": "action",
                                             "id": "motion",
                                             "contents": [
                                                 "entity",
@@ -277,7 +278,6 @@
                                             ]
                                         },
                                         {
-                                            "type": "action",
                                             "id": "calculate2",
                                             "contents": [
                                                 "{mx}",
@@ -287,7 +287,6 @@
                                             ]
                                         },
                                         {
-                                            "type": "action",
                                             "id": "fourArithmeticOperations",
                                             "contents": [
                                                 "{yaw}",
@@ -297,7 +296,6 @@
                                             ]
                                         },
                                         {
-                                            "type": "action",
                                             "id": "fourArithmeticOperations",
                                             "contents": [
                                                 "{yaw}",
@@ -307,7 +305,6 @@
                                             ]
                                         },
                                         {
-                                            "type": "action",
                                             "id": "setYaw",
                                             "contents": [
                                                 "entity",
@@ -319,11 +316,9 @@
                                 "customName": "エンティティとプレイヤーが離れてる時プレイヤーのほうに動かす"
                             },
                             {
-                                "type": "action",
                                 "id": "else",
                                 "contents": [
                                     {
-                                        "type": "action",
                                         "id": "callRecipe",
                                         "contents": [
                                             "attack",
@@ -336,12 +331,10 @@
                                 "customName": "エンティティとプレイヤーが近い時攻撃する"
                             },
                             {
-                                "type": "action",
                                 "id": "if",
                                 "contents": [
                                     [
                                         {
-                                            "type": "condition",
                                             "id": "comparisonNumber",
                                             "contents": [
                                                 "{y}",
@@ -352,7 +345,6 @@
                                     ],
                                     [
                                         {
-                                            "type": "action",
                                             "id": "calculate2",
                                             "contents": [
                                                 "{x}",
@@ -362,7 +354,6 @@
                                             ]
                                         },
                                         {
-                                            "type": "action",
                                             "id": "calculate2",
                                             "contents": [
                                                 "{y}",
@@ -372,7 +363,6 @@
                                             ]
                                         },
                                         {
-                                            "type": "action",
                                             "id": "fourArithmeticOperations",
                                             "contents": [
                                                 "{pitch}",
@@ -382,7 +372,6 @@
                                             ]
                                         },
                                         {
-                                            "type": "action",
                                             "id": "fourArithmeticOperations",
                                             "contents": [
                                                 "{pitch}",
@@ -392,7 +381,6 @@
                                             ]
                                         },
                                         {
-                                            "type": "action",
                                             "id": "setPitch",
                                             "contents": [
                                                 "entity",
@@ -425,7 +413,6 @@
             "author": "aieuooo",
             "actions": [
                 {
-                    "type": "action",
                     "id": "addDamage",
                     "contents": [
                         "target",
@@ -449,7 +436,6 @@
             "author": "aieuooo",
             "actions": [
                 {
-                    "type": "action",
                     "id": "createMap",
                     "contents": [
                         "entityIds",
@@ -463,7 +449,6 @@
                     ]
                 },
                 {
-                    "type": "action",
                     "id": "addVariable",
                     "contents": [
                         "moveSpeed",
@@ -473,7 +458,6 @@
                     ]
                 },
                 {
-                    "type": "action",
                     "id": "addVariable",
                     "contents": [
                         "entityDistanceMax",
@@ -483,7 +467,6 @@
                     ]
                 },
                 {
-                    "type": "action",
                     "id": "addVariable",
                     "contents": [
                         "entityDamageAmount",
