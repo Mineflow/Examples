@@ -2,7 +2,7 @@
     "name": "mirage",
     "author": "aieuooo",
     "detail": "",
-    "plugin_version": "0.6.2",
+    "plugin_version": "0.7.0",
     "recipes": {
         "aieuo\/mirage\/main": {
             "name": "main",
