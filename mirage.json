@@ -1,0 +1,691 @@
+{
+    "name": "mirage",
+    "author": "aieuooo",
+    "detail": "",
+    "plugin_version": "0.6.2",
+    "recipes": {
+        "aieuo\/mirage\/main": {
+            "name": "main",
+            "group": "aieuo\/mirage",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "isHandItem",
+                                "contents": [
+                                    "target",
+                                    "{createItem(stick)}"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "eventCancel",
+                                "contents": []
+                            },
+                            {
+                                "id": "createHuman",
+                                "contents": [
+                                    "target",
+                                    "target",
+                                    "human"
+                                ]
+                            },
+                            {
+                                "id": "getTargetBlock",
+                                "contents": [
+                                    "target",
+                                    "100",
+                                    "block"
+                                ]
+                            },
+                            {
+                                "id": "addMapVariable",
+                                "contents": [
+                                    "decoy",
+                                    "{target.name}",
+                                    "{human.id}",
+                                    false
+                                ]
+                            },
+                            {
+                                "id": "callRecipe",
+                                "contents": [
+                                    "moveToPosition",
+                                    [
+                                        "{human}",
+                                        "{block}"
+                                    ]
+                                ]
+                            }
+                        ]
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "PlayerDropItemEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        },
+        "aieuo\/mirage\/moveToPosition": {
+            "name": "moveToPosition",
+            "group": "aieuo\/mirage",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "getDistance",
+                    "contents": [
+                        "entity",
+                        "pos",
+                        "distance"
+                    ]
+                },
+                {
+                    "id": "whileTask",
+                    "contents": [
+                        [
+                            {
+                                "id": "comparisonNumber",
+                                "contents": [
+                                    "{distance}",
+                                    4,
+                                    "1.5"
+                                ]
+                            },
+                            {
+                                "id": "isActiveEntity",
+                                "contents": [
+                                    "{entity.id}"
+                                ]
+                            },
+                            {
+                                "id": "existsListVariableKey",
+                                "contents": [
+                                    "decoy",
+                                    "{target.name}",
+                                    false
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{pos.x}",
+                                    1,
+                                    "{entity.x}",
+                                    "dx"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{dx}",
+                                    3,
+                                    "{distance}",
+                                    "mx"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "0.35",
+                                    2,
+                                    "{mx}",
+                                    "x"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{pos.z}",
+                                    1,
+                                    "{entity.z}",
+                                    "dz"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{dz}",
+                                    3,
+                                    "{distance}",
+                                    "mz"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "0.35",
+                                    2,
+                                    "{mz}",
+                                    "z"
+                                ]
+                            },
+                            {
+                                "id": "motion",
+                                "contents": [
+                                    "entity",
+                                    "{x}",
+                                    "0",
+                                    "{z}"
+                                ]
+                            },
+                            {
+                                "id": "calculate2",
+                                "contents": [
+                                    "{mx}",
+                                    "{mz}",
+                                    5,
+                                    "yaw"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{yaw}",
+                                    2,
+                                    "-180",
+                                    "yaw"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{yaw}",
+                                    3,
+                                    "{getPi()}",
+                                    "yaw"
+                                ]
+                            },
+                            {
+                                "id": "setYaw",
+                                "contents": [
+                                    "entity",
+                                    "{yaw}"
+                                ]
+                            },
+                            {
+                                "id": "getDistance",
+                                "contents": [
+                                    "entity",
+                                    "pos",
+                                    "distance"
+                                ]
+                            }
+                        ],
+                        1,
+                        -1
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [
+                "entity",
+                "pos"
+            ],
+            "returnValues": []
+        },
+        "aieuo\/mirage\/move": {
+            "name": "move",
+            "group": "aieuo\/mirage",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "existsListVariableKey",
+                                "contents": [
+                                    "moveDecoy",
+                                    "{target.name}",
+                                    false
+                                ]
+                            },
+                            {
+                                "id": "isActiveEntity",
+                                "contents": [
+                                    "{moveDecoy.{target.name}}"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "getEntity",
+                                "contents": [
+                                    "{moveDecoy.{target.name}}",
+                                    "entity"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{move_to.x}",
+                                    1,
+                                    "{move_from.x}",
+                                    "dx"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{move_to.y}",
+                                    1,
+                                    "{move_from.y}",
+                                    "dy"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{move_to.z}",
+                                    1,
+                                    "{move_from.z}",
+                                    "dz"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{dx}",
+                                    3,
+                                    "0.6",
+                                    "x"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{dy}",
+                                    3,
+                                    "0.8",
+                                    "y"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{dz}",
+                                    3,
+                                    "0.6",
+                                    "z"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{move_to.pitch}",
+                                    1,
+                                    "{move_from.pitch}",
+                                    "pitch"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{entity.pitch}",
+                                    0,
+                                    "{pitch}",
+                                    "pitch"
+                                ]
+                            },
+                            {
+                                "id": "setPitch",
+                                "contents": [
+                                    "entity",
+                                    "{pitch}"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{target.yaw}",
+                                    1,
+                                    "{entity.yaw}",
+                                    "deg"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{deg}",
+                                    2,
+                                    "{getPi()}",
+                                    "rad"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{rad}",
+                                    3,
+                                    "180",
+                                    "rad"
+                                ]
+                            },
+                            {
+                                "id": "calculate",
+                                "contents": [
+                                    "{rad}",
+                                    5,
+                                    "sin"
+                                ]
+                            },
+                            {
+                                "id": "calculate",
+                                "contents": [
+                                    "{rad}",
+                                    6,
+                                    "cos"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{x}",
+                                    2,
+                                    "{cos}",
+                                    "x1"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{z}",
+                                    2,
+                                    "{sin}",
+                                    "x2"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{x1}",
+                                    1,
+                                    "{x2}",
+                                    "xx"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{x}",
+                                    2,
+                                    "{sin}",
+                                    "z1"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{z}",
+                                    2,
+                                    "{cos}",
+                                    "z2"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{z1}",
+                                    0,
+                                    "{z2}",
+                                    "zz"
+                                ]
+                            },
+                            {
+                                "id": "motion",
+                                "contents": [
+                                    "entity",
+                                    "{xx}",
+                                    "{y}",
+                                    "{zz}"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{move_to.yaw}",
+                                    1,
+                                    "{move_from.yaw}",
+                                    "yaw"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{entity.yaw}",
+                                    0,
+                                    "{yaw}",
+                                    "yaw"
+                                ]
+                            },
+                            {
+                                "id": "setYaw",
+                                "contents": [
+                                    "entity",
+                                    "{yaw}"
+                                ]
+                            }
+                        ]
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "PlayerMoveEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        },
+        "aieuo\/mirage\/toggleDecoy": {
+            "name": "toggleDecoy",
+            "group": "aieuo\/mirage",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "comparisonString",
+                                "contents": [
+                                    "{state}",
+                                    1,
+                                    "true"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "exit",
+                                "contents": []
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "not",
+                                "contents": [
+                                    {
+                                        "id": "existsListVariableKey",
+                                        "contents": [
+                                            "decoy",
+                                            "{target.name}",
+                                            false
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "not",
+                                "contents": [
+                                    {
+                                        "id": "existsListVariableKey",
+                                        "contents": [
+                                            "moveDecoy",
+                                            "{target.name}",
+                                            false
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "exit",
+                                "contents": []
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "existsListVariableKey",
+                                "contents": [
+                                    "decoy",
+                                    "{target.name}",
+                                    false
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "addMapVariable",
+                                "contents": [
+                                    "moveDecoy",
+                                    "{target.name}",
+                                    "{decoy.{target.name}}",
+                                    false
+                                ]
+                            },
+                            {
+                                "id": "removeContent",
+                                "contents": [
+                                    "decoy",
+                                    "{target.name}",
+                                    false
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "else",
+                    "contents": [
+                        {
+                            "id": "addMapVariable",
+                            "contents": [
+                                "decoy",
+                                "{target.name}",
+                                "{moveDecoy.{target.name}}",
+                                false
+                            ]
+                        },
+                        {
+                            "id": "removeContent",
+                            "contents": [
+                                "moveDecoy",
+                                "{target.name}",
+                                false
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "PlayerToggleSneakEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        },
+        "aieuo\/mirage\/reset": {
+            "name": "reset",
+            "group": "aieuo\/mirage",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "createMap",
+                    "contents": [
+                        "decoy",
+                        [
+                            ""
+                        ],
+                        [
+                            ""
+                        ],
+                        false
+                    ]
+                },
+                {
+                    "id": "createMap",
+                    "contents": [
+                        "moveDecoy",
+                        [
+                            ""
+                        ],
+                        [
+                            ""
+                        ],
+                        false
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "ServerStartEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    },
+    "commands": [],
+    "forms": [],
+    "configs": []
+}
