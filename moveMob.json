@@ -1,0 +1,71 @@
+{
+    "name": "moveMob",
+    "author": "aieuooo",
+    "detail": "Make the track the player",
+    "plugin_version": "1.2.0",
+    "recipes": [
+        {
+            "name": "moveMob",
+            "group": "aieuo\/mob",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "whileTask",
+                    "contents": [
+                        [
+                            {
+                                "id": "isActiveEntityVariable",
+                                "contents": [
+                                    "target"
+                                ]
+                            },
+                            {
+                                "id": "isActiveEntityVariable",
+                                "contents": [
+                                    "damaged"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "moveTo",
+                                "contents": [
+                                    "damaged",
+                                    "target",
+                                    "0.1",
+                                    "0",
+                                    "0.1"
+                                ]
+                            },
+                            {
+                                "id": "lookAt",
+                                "contents": [
+                                    "damaged",
+                                    "target"
+                                ]
+                            }
+                        ],
+                        1,
+                        -1
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "aieuo\\mineflow\\event\\EntityAttackEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    ],
+    "commands": [],
+    "forms": [],
+    "configs": []
+}
