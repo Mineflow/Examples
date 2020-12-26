@@ -1,0 +1,45 @@
+{
+    "name": "check item id",
+    "author": "aieuooo",
+    "detail": "",
+    "plugin_version": "1.2.0",
+    "recipes": [
+        {
+            "name": "checkId",
+            "group": "aieuo\/checkId",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "sendMessage",
+                    "contents": [
+                        "target",
+                        "{target.hand}"
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "command",
+                    "key": "id",
+                    "subKey": "id"
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    ],
+    "commands": {
+        "id": {
+            "command": "id",
+            "permission": "mineflow.customcommand.op",
+            "description": "",
+            "subcommands": []
+        }
+    },
+    "forms": [],
+    "configs": []
+}

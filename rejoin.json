@@ -1,0 +1,44 @@
+{
+    "name": "rejoin",
+    "author": "aieuooo",
+    "detail": "Rejoin the server when \/rejoin is executed",
+    "plugin_version": "1.2.0",
+    "recipes": [
+        {
+            "name": "rejoin",
+            "group": "aieuo\/rejoin",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "wait",
+                    "contents": [
+                        "0.2"
+                    ]
+                },
+                {
+                    "id": "command",
+                    "contents": [
+                        "target",
+                        "transferserver 192.168.10.50 19134"
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "command",
+                    "key": "rejoin",
+                    "subKey": "rejoin"
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    ],
+    "commands": [],
+    "forms": [],
+    "configs": []
+}
