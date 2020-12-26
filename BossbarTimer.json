@@ -1,0 +1,134 @@
+{
+    "name": "BossbarTimer",
+    "author": "aieuooo",
+    "detail": "\/timer <seconds>",
+    "plugin_version": "1.2.0",
+    "recipes": [
+        {
+            "name": "timer",
+            "group": "aieuo\/timer",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "not",
+                                "contents": [
+                                    {
+                                        "id": "existsListVariableKey",
+                                        "contents": [
+                                            "args",
+                                            "0",
+                                            true
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "sendMessage",
+                                "contents": [
+                                    "target",
+                                    "Usage: \/timer <seconds>"
+                                ]
+                            },
+                            {
+                                "id": "exit",
+                                "contents": []
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "addVariable",
+                    "contents": [
+                        "max",
+                        "{args.0}",
+                        1,
+                        true
+                    ]
+                },
+                {
+                    "id": "addVariable",
+                    "contents": [
+                        "seconds",
+                        "{max}",
+                        1,
+                        true
+                    ]
+                },
+                {
+                    "id": "whileTask",
+                    "contents": [
+                        [
+                            {
+                                "id": "comparisonNumber",
+                                "contents": [
+                                    "{seconds}",
+                                    2,
+                                    "0"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "showBossbar",
+                                "contents": [
+                                    "target",
+                                    "TIMER remains {seconds}",
+                                    "{max}",
+                                    "{seconds}",
+                                    "timer"
+                                ]
+                            },
+                            {
+                                "id": "fourArithmeticOperations",
+                                "contents": [
+                                    "{seconds}",
+                                    1,
+                                    "1",
+                                    "seconds"
+                                ]
+                            }
+                        ],
+                        20,
+                        -1
+                    ]
+                },
+                {
+                    "id": "removeBossbar",
+                    "contents": [
+                        "target",
+                        "timer"
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "command",
+                    "key": "timer",
+                    "subKey": "timer"
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    ],
+    "commands": {
+        "timer": {
+            "command": "timer",
+            "permission": "mineflow.customcommand.true",
+            "description": "",
+            "subcommands": []
+        }
+    },
+    "forms": [],
+    "configs": []
+}
