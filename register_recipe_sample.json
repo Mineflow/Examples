@@ -1,0 +1,92 @@
+{
+    "name": "register_recipe_sample",
+    "author": "aieuooo",
+    "detail": "",
+    "plugin_version": "1.3.0",
+    "recipes": [
+        {
+            "name": "recipe",
+            "group": "aieuo\/recipe",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "createItem",
+                    "contents": [
+                        "stone",
+                        "stone",
+                        "1",
+                        ""
+                    ]
+                },
+                {
+                    "id": "createItem",
+                    "contents": [
+                        "grass",
+                        "grass",
+                        "1",
+                        ""
+                    ]
+                },
+                {
+                    "id": "createItem",
+                    "contents": [
+                        "dirt",
+                        "dirt",
+                        "1",
+                        ""
+                    ]
+                },
+                {
+                    "id": "registerShapedRecipe",
+                    "contents": [
+                        [
+                            "stone",
+                            "stone",
+                            "stone",
+                            "stone",
+                            "",
+                            "stone",
+                            "stone",
+                            "stone",
+                            "stone"
+                        ],
+                        "grass"
+                    ]
+                },
+                {
+                    "id": "registerShapedRecipe",
+                    "contents": [
+                        [
+                            "stone",
+                            "",
+                            "",
+                            "",
+                            "stone",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        "dirt"
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "aieuo\\mineflow\\event\\ServerStartEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    ],
+    "commands": [],
+    "forms": [],
+    "configs": []
+}
