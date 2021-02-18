@@ -1,0 +1,212 @@
+{
+    "name": "hammer",
+    "author": "aieuooo",
+    "detail": "break 3x3x3 blocks with hammer",
+    "plugin_version": "1.3.0",
+    "recipes": [
+        {
+            "name": "main",
+            "group": "aieuo\/hammer",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "comparisonString",
+                                "contents": [
+                                    "{target.hand.name}",
+                                    1,
+                                    "hammer"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "exit",
+                                "contents": []
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "comparisonNumber",
+                                "contents": [
+                                    "{target.direction}",
+                                    0,
+                                    "0"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "positionAddition",
+                                "contents": [
+                                    "block",
+                                    "0",
+                                    "-1",
+                                    "-1",
+                                    "pos1"
+                                ]
+                            },
+                            {
+                                "id": "positionAddition",
+                                "contents": [
+                                    "block",
+                                    "3",
+                                    "1",
+                                    "1",
+                                    "pos2"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "elseif",
+                    "contents": [
+                        [
+                            {
+                                "id": "comparisonNumber",
+                                "contents": [
+                                    "{target.direction}",
+                                    0,
+                                    "1"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "positionAddition",
+                                "contents": [
+                                    "block",
+                                    "-1",
+                                    "-1",
+                                    "0",
+                                    "pos1"
+                                ]
+                            },
+                            {
+                                "id": "positionAddition",
+                                "contents": [
+                                    "block",
+                                    "1",
+                                    "1",
+                                    "3",
+                                    "pos2"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "elseif",
+                    "contents": [
+                        [
+                            {
+                                "id": "comparisonNumber",
+                                "contents": [
+                                    "{target.direction}",
+                                    0,
+                                    "2"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "positionAddition",
+                                "contents": [
+                                    "block",
+                                    "0",
+                                    "-1",
+                                    "-1",
+                                    "pos1"
+                                ]
+                            },
+                            {
+                                "id": "positionAddition",
+                                "contents": [
+                                    "block",
+                                    "-3",
+                                    "1",
+                                    "1",
+                                    "pos2"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "else",
+                    "contents": [
+                        {
+                            "id": "positionAddition",
+                            "contents": [
+                                "block",
+                                "-1",
+                                "-1",
+                                "0",
+                                "pos1"
+                            ]
+                        },
+                        {
+                            "id": "positionAddition",
+                            "contents": [
+                                "block",
+                                "1",
+                                "1",
+                                "-3",
+                                "pos2"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "createBlock",
+                    "contents": [
+                        "air",
+                        "air"
+                    ]
+                },
+                {
+                    "id": "foreachPosition",
+                    "contents": [
+                        [
+                            {
+                                "id": "setBlock",
+                                "contents": [
+                                    "pos",
+                                    "air"
+                                ]
+                            }
+                        ],
+                        "pos1",
+                        "pos2",
+                        "pos"
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "pocketmine\\event\\block\\BlockBreakEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    ],
+    "commands": [],
+    "forms": [],
+    "configs": []
+}

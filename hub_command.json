@@ -1,0 +1,55 @@
+{
+    "name": "hub_command",
+    "author": "aieuooo",
+    "detail": "teleport to hub",
+    "plugin_version": "1.3.0",
+    "recipes": [
+        {
+            "name": "hub",
+            "group": "aieuo",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "createPosition",
+                    "contents": [
+                        "pos",
+                        "341",
+                        "67",
+                        "302",
+                        "world2"
+                    ]
+                },
+                {
+                    "id": "teleport",
+                    "contents": [
+                        "target",
+                        "pos"
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "command",
+                    "key": "hub",
+                    "subKey": "hub"
+                }
+            ],
+            "target": {
+                "type": 0,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    ],
+    "commands": {
+        "hub": {
+            "command": "hub",
+            "permission": "mineflow.customcommand.true",
+            "description": "",
+            "subcommands": []
+        }
+    },
+    "forms": [],
+    "configs": []
+}
