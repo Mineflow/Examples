@@ -4,6 +4,9 @@
 jsonファイルをmineflow/importsフォルダに入れて`/mineflow`コマンドで読みこんでください  
 Put the json file in the mineflow/imports folder and import it with `/mineflow` command  
 
+# videos
+https://www.youtube.com/watch?v=w7foeznrqd0&list=PL2poTI_Jv_RgIrAT62jWQ55KSfonOxW6X
+
 ## [checkId](https://github.com/aieuo/MineflowExamples/blob/master/checkId.json)
 `/id` コマンドで手に持っているアイテムのidを表示する  
 Send ID of the item in player's hand with the command `/id`.  
