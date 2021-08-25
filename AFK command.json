@@ -1,0 +1,43 @@
+{
+    "name": "AFK command",
+    "author": "aieuooo",
+    "detail": "",
+    "plugin_version": "2.3.1",
+    "recipes": [
+        {
+            "name": "afk",
+            "group": "test",
+            "plugin_version": "2.3.1",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "foreach",
+                    "contents": [
+                        [
+                            {
+                                "id": "sendPopup",
+                                "contents": [
+                                    "player",
+                                    "{target} is now AFK"
+                                ]
+                            }
+                        ],
+                        "server.players",
+                        "key",
+                        "player"
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 1,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    ],
+    "commands": [],
+    "forms": [],
+    "configs": []
+}
