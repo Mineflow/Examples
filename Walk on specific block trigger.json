@@ -1,0 +1,209 @@
+{
+    "name": "Walk on specific block trigger",
+    "author": "aieuooo",
+    "detail": "Fires a custom trigger named walk_on_stone when a player walks on a stone block",
+    "plugin_version": "2.6.1",
+    "recipes": [
+        {
+            "name": "main",
+            "group": "custom_trigger\/walk_on_specific_block",
+            "plugin_version": "2.6.0",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "addVariable",
+                    "contents": [
+                        "target_block",
+                        "1:0",
+                        0,
+                        true
+                    ]
+                },
+                {
+                    "id": "getVariable",
+                    "contents": [
+                        "walk_on_specific_block:last_block.{target.name}",
+                        "last_block"
+                    ]
+                },
+                {
+                    "id": "getEntitySide",
+                    "contents": [
+                        "target",
+                        "down",
+                        "1",
+                        "pos"
+                    ]
+                },
+                {
+                    "id": "getBlock",
+                    "contents": [
+                        "pos",
+                        "block"
+                    ]
+                },
+                {
+                    "id": "addVariable",
+                    "contents": [
+                        "block_id",
+                        "{block.id}:{block.damage}",
+                        0,
+                        true
+                    ]
+                },
+                {
+                    "id": "addMapVariable",
+                    "contents": [
+                        "walk_on_specific_block:last_block",
+                        "{target.name}",
+                        "{block_id}",
+                        false
+                    ]
+                },
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "or",
+                                "contents": [
+                                    {
+                                        "id": "comparisonString",
+                                        "contents": [
+                                            "{block_id}",
+                                            1,
+                                            "{target_block}"
+                                        ]
+                                    },
+                                    {
+                                        "id": "not",
+                                        "contents": [
+                                            {
+                                                "id": "existsListVariableKey",
+                                                "contents": [
+                                                    "walk_on_specific_block:last_block",
+                                                    "{target.name}",
+                                                    false
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "comparisonString",
+                                        "contents": [
+                                            "{block_id}",
+                                            0,
+                                            "{last_block}"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "exit",
+                                "contents": []
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "callTrigger",
+                    "contents": [
+                        "walk_on_stone"
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "PlayerMoveEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 1,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        },
+        {
+            "name": "init",
+            "group": "custom_trigger\/walk_on_specific_block",
+            "plugin_version": "2.6.1",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "createMap",
+                    "contents": [
+                        "walk_on_specific_block:last_block",
+                        [
+                            ""
+                        ],
+                        [
+                            ""
+                        ],
+                        false
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "ServerStartEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 1,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        },
+        {
+            "name": "on_player_join",
+            "group": "custom_trigger\/walk_on_specific_block",
+            "plugin_version": "2.6.1",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "getEntitySide",
+                    "contents": [
+                        "target",
+                        "down",
+                        "1",
+                        "pos"
+                    ]
+                },
+                {
+                    "id": "getBlock",
+                    "contents": [
+                        "pos",
+                        "block"
+                    ]
+                },
+                {
+                    "id": "addMapVariable",
+                    "contents": [
+                        "walk_on_specific_block:last_block",
+                        "{target.name}",
+                        "{block.id}:{block.damage}",
+                        false
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 1,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    ],
+    "commands": [],
+    "forms": [],
+    "configs": []
+}
