@@ -52,3 +52,14 @@ How to use:
 3. Add `script > compare strings` to the condition and check if `{result}` is equal to `true`  
 
 Examples: [BlockPlaceCoolDown](#BlockPlaceCoolDown)  
+  
+# Custom trigger
+## [Walk on specific block](https://github.com/aieuo/MineflowExamples/blob/master/Walk%20on%20specific%20block%20trigger.json)
+プレイヤーが特定のブロックに乗ったときにカスタムトリガーを発火します．  
+初期値では石ブロックに乗ったときに`walk_on_stone`という名前のカスタムトリガーが呼ばれます．
+ブロックを変更するには`custom_trigger/walk_on_specific_block/init`を編集してください．
+  
+Fires a custom trigger when a player walks on a specific  block.  
+By default, a custom trigger named `walk_on_stone` is called when the player walks on a stone block.
+To change the block and trigger name, you can edit the `custom_trigger/walk_on_specific_block/init` recipe.
+
