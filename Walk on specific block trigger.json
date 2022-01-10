@@ -1,7 +1,7 @@
 {
     "name": "Walk on specific block trigger",
     "author": "aieuooo",
-    "detail": "Fires a custom trigger named walk_on_stone when a player walks on a stone block",
+    "detail": "Fires a custom trigger when a player walks on a specific  block",
     "plugin_version": "2.6.1",
     "recipes": [
         {
@@ -10,22 +10,6 @@
             "plugin_version": "2.6.0",
             "author": "aieuooo",
             "actions": [
-                {
-                    "id": "addVariable",
-                    "contents": [
-                        "target_block",
-                        "1:0",
-                        0,
-                        true
-                    ]
-                },
-                {
-                    "id": "getVariable",
-                    "contents": [
-                        "walk_on_specific_block:last_block.{target.name}",
-                        "last_block"
-                    ]
-                },
                 {
                     "id": "getEntitySide",
                     "contents": [
@@ -52,6 +36,44 @@
                     ]
                 },
                 {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "existsListVariableKey",
+                                "contents": [
+                                    "walk_on_specific_block:last_block",
+                                    "{target.name}",
+                                    false
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "getVariable",
+                                "contents": [
+                                    "walk_on_specific_block:last_block.{target.name}",
+                                    "last_block"
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "id": "else",
+                    "contents": [
+                        {
+                            "id": "addVariable",
+                            "contents": [
+                                "last_block",
+                                "{block_id}",
+                                0,
+                                true
+                            ]
+                        }
+                    ]
+                },
+                {
                     "id": "addMapVariable",
                     "contents": [
                         "walk_on_specific_block:last_block",
@@ -72,20 +94,7 @@
                                         "contents": [
                                             "{block_id}",
                                             1,
-                                            "{target_block}"
-                                        ]
-                                    },
-                                    {
-                                        "id": "not",
-                                        "contents": [
-                                            {
-                                                "id": "existsListVariableKey",
-                                                "contents": [
-                                                    "walk_on_specific_block:last_block",
-                                                    "{target.name}",
-                                                    false
-                                                ]
-                                            }
+                                            "{walk_on_specific_block:target_block}"
                                         ]
                                     },
                                     {
@@ -110,7 +119,7 @@
                 {
                     "id": "callTrigger",
                     "contents": [
-                        "walk_on_stone"
+                        "{walk_on_specific_block:trigger_name}"
                     ]
                 }
             ],
@@ -144,6 +153,24 @@
                         [
                             ""
                         ],
+                        false
+                    ]
+                },
+                {
+                    "id": "addVariable",
+                    "contents": [
+                        "walk_on_specific_block:target_block",
+                        "1:0",
+                        0,
+                        false
+                    ]
+                },
+                {
+                    "id": "addVariable",
+                    "contents": [
+                        "walk_on_specific_block:trigger_name",
+                        "walk_on_stone",
+                        0,
                         false
                     ]
                 }
