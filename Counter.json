@@ -1,0 +1,161 @@
+{
+    "name": "Counter",
+    "author": "aieuooo",
+    "detail": "count something with id and player name",
+    "plugin_version": "2.8.0",
+    "recipes": [
+        {
+            "name": "get",
+            "group": "aieuo\/counter",
+            "plugin_version": "2.7.0",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "createConfig",
+                    "contents": [
+                        "config",
+                        "aieuo_counter"
+                    ]
+                },
+                {
+                    "id": "addVariable",
+                    "contents": [
+                        "result",
+                        "0",
+                        1,
+                        true
+                    ]
+                },
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "existsConfig",
+                                "contents": [
+                                    "config",
+                                    "{id}.{player}"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "addVariable",
+                                "contents": [
+                                    "result",
+                                    "{config.{id}.{player}}",
+                                    1,
+                                    true
+                                ]
+                            }
+                        ]
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 1,
+                "options": []
+            },
+            "arguments": [
+                "player",
+                "id"
+            ],
+            "returnValues": [
+                "result"
+            ]
+        },
+        {
+            "name": "increment",
+            "group": "aieuo\/counter",
+            "plugin_version": "2.7.0",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "createConfig",
+                    "contents": [
+                        "config",
+                        "aieuo_counter"
+                    ]
+                },
+                {
+                    "id": "callRecipe",
+                    "contents": [
+                        "get",
+                        [
+                            "{player}",
+                            "{id}"
+                        ]
+                    ]
+                },
+                {
+                    "id": "setConfig",
+                    "contents": [
+                        "config",
+                        "{id}.{player}",
+                        "{result + 1}"
+                    ]
+                },
+                {
+                    "id": "saveConfig",
+                    "contents": [
+                        "config"
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 1,
+                "options": []
+            },
+            "arguments": [
+                "player",
+                "id"
+            ],
+            "returnValues": []
+        },
+        {
+            "name": "increment_and_get",
+            "group": "aieuo\/counter",
+            "plugin_version": "2.7.0",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "callRecipe",
+                    "contents": [
+                        "increment",
+                        [
+                            "{player}",
+                            "{id}"
+                        ]
+                    ]
+                },
+                {
+                    "id": "callRecipe",
+                    "contents": [
+                        "get",
+                        [
+                            "{player}",
+                            "{id}"
+                        ]
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 1,
+                "options": []
+            },
+            "arguments": [
+                "player",
+                "id"
+            ],
+            "returnValues": [
+                "result"
+            ]
+        }
+    ],
+    "commands": [],
+    "forms": [],
+    "configs": []
+}
