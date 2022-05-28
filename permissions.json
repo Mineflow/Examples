@@ -1,0 +1,274 @@
+{
+    "name": "permissions",
+    "author": "aieuooo",
+    "detail": "Add permissions to a player and keep them after restart the server",
+    "plugin_version": "2.9.1",
+    "recipes": [
+        {
+            "name": "add",
+            "group": "aieuo\/permission",
+            "plugin_version": "2.9.1",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "addPermission",
+                    "contents": [
+                        "target",
+                        "{permission}"
+                    ]
+                },
+                {
+                    "id": "callRecipe",
+                    "contents": [
+                        "get",
+                        [
+                            "{player}"
+                        ]
+                    ]
+                },
+                {
+                    "id": "addListVariable",
+                    "contents": [
+                        "permissions",
+                        [
+                            "{permission}"
+                        ],
+                        true
+                    ]
+                },
+                {
+                    "id": "callRecipe",
+                    "contents": [
+                        "set",
+                        [
+                            "{player}",
+                            "{permissions}"
+                        ]
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 1,
+                "options": []
+            },
+            "arguments": [
+                "player",
+                "permission"
+            ],
+            "returnValues": [
+                "permissions"
+            ]
+        },
+        {
+            "name": "get",
+            "group": "aieuo\/permission",
+            "plugin_version": "2.9.1",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "createConfig",
+                    "contents": [
+                        "config",
+                        "permissions"
+                    ]
+                },
+                {
+                    "id": "createList",
+                    "contents": [
+                        "permissions",
+                        [
+                            ""
+                        ],
+                        true
+                    ]
+                },
+                {
+                    "id": "if",
+                    "contents": [
+                        [
+                            {
+                                "id": "existsConfig",
+                                "contents": [
+                                    "config",
+                                    "{player}"
+                                ]
+                            }
+                        ],
+                        [
+                            {
+                                "id": "getVariable",
+                                "contents": [
+                                    "config.{player}",
+                                    "permissions",
+                                    ""
+                                ]
+                            }
+                        ]
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 1,
+                "options": []
+            },
+            "arguments": [
+                "player"
+            ],
+            "returnValues": [
+                "permissions"
+            ]
+        },
+        {
+            "name": "set",
+            "group": "aieuo\/permission",
+            "plugin_version": "2.9.1",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "createConfig",
+                    "contents": [
+                        "config",
+                        "permissions"
+                    ]
+                },
+                {
+                    "id": "setConfig",
+                    "contents": [
+                        "config",
+                        "{player}",
+                        "{permissions}"
+                    ]
+                },
+                {
+                    "id": "saveConfig",
+                    "contents": [
+                        "config"
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 1,
+                "options": []
+            },
+            "arguments": [
+                "player",
+                "permissions"
+            ],
+            "returnValues": []
+        },
+        {
+            "name": "remove",
+            "group": "aieuo\/permission",
+            "plugin_version": "2.9.1",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "createConfig",
+                    "contents": [
+                        "config",
+                        "permissions"
+                    ]
+                },
+                {
+                    "id": "removePermission",
+                    "contents": [
+                        "target",
+                        "{permission}"
+                    ]
+                },
+                {
+                    "id": "callRecipe",
+                    "contents": [
+                        "get",
+                        [
+                            "{player}"
+                        ]
+                    ]
+                },
+                {
+                    "id": "removeContentByValue",
+                    "contents": [
+                        "permissions",
+                        "{permission}",
+                        true
+                    ]
+                },
+                {
+                    "id": "callRecipe",
+                    "contents": [
+                        "set",
+                        [
+                            "{player}",
+                            "{permissions}"
+                        ]
+                    ]
+                }
+            ],
+            "triggers": [],
+            "target": {
+                "type": 1,
+                "options": []
+            },
+            "arguments": [
+                "player",
+                "permission"
+            ],
+            "returnValues": [
+                "permissions"
+            ]
+        },
+        {
+            "name": "player_on_join",
+            "group": "aieuo\/permission",
+            "plugin_version": "2.9.1",
+            "author": "aieuooo",
+            "actions": [
+                {
+                    "id": "callRecipe",
+                    "contents": [
+                        "get",
+                        [
+                            "{target}"
+                        ]
+                    ]
+                },
+                {
+                    "id": "foreach",
+                    "contents": [
+                        [
+                            {
+                                "id": "addPermission",
+                                "contents": [
+                                    "target",
+                                    "{permission}"
+                                ]
+                            }
+                        ],
+                        "permissions",
+                        "key",
+                        "permission"
+                    ]
+                }
+            ],
+            "triggers": [
+                {
+                    "type": "event",
+                    "key": "PlayerJoinEvent",
+                    "subKey": ""
+                }
+            ],
+            "target": {
+                "type": 1,
+                "options": []
+            },
+            "arguments": [],
+            "returnValues": []
+        }
+    ],
+    "commands": [],
+    "forms": [],
+    "configs": []
+}
